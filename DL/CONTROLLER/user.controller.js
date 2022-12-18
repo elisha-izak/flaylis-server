@@ -4,9 +4,17 @@ const userData = require('../MODEL/user.model')
 async function create(data) {
     return await userData.create(data)
 }
+
 async function read(filter, proj) {
     return await userData.find(filter, proj)
 }
+
+async function readAllFlalist(filter, proj) {
+    return await userData.find(filter, proj)
+    .populate('flalistId', {})
+        .populate('songList', {});
+}
+
 async function readOne(filter, proj) {
     let res = await read(filter, proj)
     return res[0]
@@ -21,4 +29,4 @@ async function del(id) {
 
 
 
-module.exports = { create, read, update, del,readOne }
+module.exports = { create, read, update, del,readOne, readAllFlalist }
