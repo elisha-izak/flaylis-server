@@ -5,6 +5,7 @@ const auth = require('../auth');
 
 
 async function createNewUser(data) {
+    console.log(data);
     if(!data.email || !data.password) throw "missing data"
 
     let user = await userDL.readOne({email : data.email});
@@ -23,7 +24,7 @@ async function createNewUser(data) {
 
 
 async function getAllUsers(){
-    let users = userDL.read({})
+    let users = await userDL.read({})
     console.log(users);
     return users
 }
@@ -47,6 +48,12 @@ throw 'not valid'
 }
 
 
+async function addFlalistUse(data){
+    await userDL.updateFlalist(data.userId, data.flalistId)
+    let user = await userDL.read({_id:data.userId})
+    return user
+}
+
 
 
 
@@ -67,4 +74,4 @@ throw 'not valid'
 // createNewUser(user);
 
 
-module.exports = {createNewUser, getAllUsers, loginUser}
+module.exports = {createNewUser, getAllUsers, loginUser, addFlalistUse}

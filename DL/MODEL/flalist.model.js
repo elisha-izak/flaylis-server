@@ -4,6 +4,11 @@ const flalistSchema = new mongoose.Schema({
     title : {
         type : String
     },
+    userId:{
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: "users",
+        required: true
+    },
     songList: [{
         songId: {
             type: String,
@@ -28,5 +33,5 @@ const flalistSchema = new mongoose.Schema({
 
 
 
-const flalistData = mongoose.model('flalist', userSchema)
+const flalistData = mongoose.model('flalist', flalistSchema)
 module.exports = flalistData

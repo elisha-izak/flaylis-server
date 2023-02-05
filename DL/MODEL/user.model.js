@@ -26,12 +26,10 @@ const userSchema = new mongoose.Schema({
         default: true
     },
     flalistslist:[{
-    flalistId: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: "flalist",
         required: true
     },
-    }
     ]
 })
 

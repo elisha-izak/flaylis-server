@@ -22,6 +22,11 @@ async function readOne(filter, proj) {
 async function update(filter, newData) {
     return await userData.updateMany(filter, newData)
 }
+
+async function updateFlalist(userId, flalistId) {
+    return await userData.updateOne({_id: userId},{ $push: { flalistslist: flalistId } } )
+}
+
 async function del(id) {
     return await update(id, { isActive: false })
 }
@@ -29,4 +34,4 @@ async function del(id) {
 
 
 
-module.exports = { create, read, update, del,readOne, readAllFlalist }
+module.exports = { create, read, update, del,readOne, readAllFlalist, updateFlalist }
